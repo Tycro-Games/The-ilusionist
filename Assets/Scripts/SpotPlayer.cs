@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
@@ -7,33 +8,32 @@ public class SpotPlayer : MonoBehaviour
 {
     [SerializeField]
     private Transform pathHolder = null;
-
-    [SerializeField]
-    private Light2D lighting;
-
-    [SerializeField]
-    private LayerMask viewLayer = new LayerMask ();
-
     [Header ("Movement")]
     [SerializeField]
     private float moveSpeed = 10.0f;
+    private Vector2 currentPoint = Vector2.zero;
+
+
+
+    private int index = 0;
+
     [SerializeField]
     private float timeToWait = 2.0f;
+
     [Header ("Rotation")]
     [SerializeField]
     private float turnSpeed = 10.0f;
-    [Header ("Player Related")]
 
-    [SerializeField]
-    private float timeToSpotPlayer;
-    //private staff
-    private float playerVisibleTimer = 0.0f;
+    private Vector2[] Points;
+
     private void Start ()
     {
-        lighting = GetComponent<Light2D> ();
-
+        injectPoints ();
+    }
+    private void injectPoints ()
+    {
         int count = pathHolder.childCount;
-        Vector2[] Points = new Vector2[count];
+        Points = new Vector2[count];
 
 
         for (int i = 0; i < count; i++)
@@ -41,56 +41,26 @@ public class SpotPlayer : MonoBehaviour
             Points[i] = pathHolder.GetChild (i).position;
         }
 
-        StartCoroutine (FollowPoints (Points));
-    }
-    public bool CanSeePlayer ()
-    {
-        Vector2 playerPos = StaticInfo.PlayerInfo.position;
-        Vector2 myPos = transform.position;
-        if (Vector2.Distance (myPos, playerPos) <= lighting.pointLightOuterRadius)
-        {
-            Vector2 dir = (playerPos - myPos).normalized;
-            if (Vector2.Angle (transform.up, dir) <= lighting.pointLightOuterAngle / 2)
-                if (Physics.Raycast (myPos, dir, lighting.pointLightOuterRadius, viewLayer))
-                {
-                    return true;
-                }
-        }
-
-        return false;
-    }
-    private void Update ()
-    {
-        #region see player
-        if (CanSeePlayer ())
-        {
-            playerVisibleTimer += Time.deltaTime;
-        }
-        else
-        {
-            playerVisibleTimer -= Time.deltaTime;
-        }
-        playerVisibleTimer = Mathf.Clamp (playerVisibleTimer, 0, timeToSpotPlayer);
-
-        if (playerVisibleTimer >= timeToSpotPlayer)
-            Debug.Log ("atackTheFucker");
-        #endregion
-
-    }
-
-    private IEnumerator FollowPoints (Vector2[] Points)
-    {
-        int index = 1;
-        Vector2 currentPoint = Points[index];
+        index = 1;
+        currentPoint = Points[index];
 
         transform.position = Points[0];
 
-
         transform.rotation = Quaternion.LookRotation (transform.forward, GetDir (currentPoint));
 
+        StartCoroutine (FollowPoints ());
+    }
+    public Vector2 ReturnCurrentPoint ()
+    {
+        return Points[index];
+    }
+    public IEnumerator FollowPointsAfterChase ()
+    {
+        yield return StartCoroutine (RotateToPoint (currentPoint));
         while (true)
         {
-            transform.position = Vector2.MoveTowards (transform.position, Points[index], Time.deltaTime * moveSpeed);
+
+            Move (Points[index], moveSpeed);
             if ((Vector2)transform.position == Points[index])
             {
                 index = (index + 1) % Points.Length;
@@ -101,16 +71,37 @@ public class SpotPlayer : MonoBehaviour
             yield return null;
         }
     }
-    private IEnumerator RotateToPoint (Vector2 target)
+
+    public IEnumerator FollowPoints ()
+    {
+        while (true)
+        {
+
+            Move (Points[index], moveSpeed);
+            if ((Vector2)transform.position == Points[index])
+            {
+                index = (index + 1) % Points.Length;
+                currentPoint = Points[index];
+                yield return new WaitForSeconds (timeToWait);
+                yield return StartCoroutine (RotateToPoint (currentPoint));
+            }
+            yield return null;
+        }
+    }
+    public IEnumerator RotateToPoint (Vector2 target)
     {
 
-        Quaternion newRot = Quaternion.LookRotation (transform.forward, GetDir(target));
+        Quaternion newRot = Quaternion.LookRotation (transform.forward, GetDir (target));
 
         while (transform.rotation != newRot)
         {
             transform.rotation = Quaternion.RotateTowards (transform.rotation, newRot, turnSpeed * Time.deltaTime);
             yield return null;
         }
+    }
+    private void Move (Vector2 pos, float speed)
+    {
+        transform.position = Vector2.MoveTowards (transform.position, pos, Time.deltaTime * speed);
     }
     private Vector2 GetDir (Vector2 target)
     {
@@ -136,7 +127,6 @@ public class SpotPlayer : MonoBehaviour
         }
         Gizmos.DrawLine (previousPosition, startPosition);
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay (transform.position, transform.up * lighting.pointLightOuterRadius);
+
     }
 }

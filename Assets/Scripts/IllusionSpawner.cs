@@ -5,11 +5,16 @@ using UnityEngine.InputSystem.Controls;
 
 public class IllusionSpawner : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject Illusion = null;
-
     private NavMeshAgent agent = null;
     private GameObject currentInstance = null;
+
+    [Header ("Illusion")]
+    [SerializeField]
+    private GameObject Illusion = null;
+    [SerializeField]
+    private float aliveIlussionTime = 10.0f;
+    
+    
     [Header ("Raycast")]
     [SerializeField]
     private float maxDist = 100.0f;
@@ -34,6 +39,7 @@ public class IllusionSpawner : MonoBehaviour
                 if (hit.transform.tag == "Ground")
                 {
                     currentInstance = Instantiate (Illusion, transform.position, transform.rotation);
+                    Destroy (currentInstance.gameObject, aliveIlussionTime);
                     agent = currentInstance.GetComponent<NavMeshAgent> ();
 
 
