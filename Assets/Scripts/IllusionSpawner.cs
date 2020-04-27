@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
 
 public class IllusionSpawner : MonoBehaviour
 {
@@ -13,8 +12,7 @@ public class IllusionSpawner : MonoBehaviour
     private GameObject Illusion = null;
     [SerializeField]
     private float aliveIlussionTime = 10.0f;
-    
-    
+
     [Header ("Raycast")]
     [SerializeField]
     private float maxDist = 100.0f;
@@ -29,6 +27,10 @@ public class IllusionSpawner : MonoBehaviour
         {
             isUsingIlusion = !isUsingIlusion;
         }
+        if (Input.GetMouseButtonDown (1) && currentInstance != null)
+        {
+            Destroy (currentInstance.gameObject);
+        }
     }
     public void Spawn (InputAction.CallbackContext ctx)
     {
@@ -36,7 +38,7 @@ public class IllusionSpawner : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
             if (Physics.Raycast (ray, out RaycastHit hit, maxDist, Ground))
-                if (hit.transform.tag == "Ground")
+                if (hit.transform.tag == "Ground" && currentInstance == null)
                 {
                     currentInstance = Instantiate (Illusion, transform.position, transform.rotation);
                     Destroy (currentInstance.gameObject, aliveIlussionTime);
@@ -46,7 +48,7 @@ public class IllusionSpawner : MonoBehaviour
                     agent.SetDestination ((Vector2)hit.point);
                     isUsingIlusion = false;
                 }
-            
+
         }
     }
 }

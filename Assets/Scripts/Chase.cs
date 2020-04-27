@@ -31,7 +31,7 @@ public class Chase : MonoBehaviour
     [SerializeField]
     private float chaseTurnSpeed = 150.0f;
 
-    private Collider[] Hostiles = new Collider[3];
+    private Collider[] Hostiles = new Collider[5];
 
     private Transform currentTarget = null;
 
@@ -46,26 +46,41 @@ public class Chase : MonoBehaviour
         if (foundTarget == false)
             CheckSoroundings ();
     }
-    private void CheckSoroundings ()
+    private IEnumerator ColorTransition (bool Atack)
     {
-        if (CanSeePlayer ())
+        if (Atack)
         {
-            playerVisibleTimer += Time.deltaTime;
+            while (playerVisibleTimer < timeToSpotPlayer)
+            {
+                playerVisibleTimer += Time.deltaTime;
+                playerVisibleTimer = Mathf.Clamp (playerVisibleTimer, 0, timeToSpotPlayer);
+                lighting.color = Color.Lerp (patrolColor, chaseColor, playerVisibleTimer / timeToSpotPlayer);
+                yield return null;
+            }
         }
         else
         {
-            playerVisibleTimer -= Time.deltaTime;
+            while (playerVisibleTimer > 0)
+            {
+                playerVisibleTimer -= Time.deltaTime;
+                playerVisibleTimer = Mathf.Clamp (playerVisibleTimer, 0, timeToSpotPlayer);
+                lighting.color = Color.Lerp (patrolColor, chaseColor, playerVisibleTimer / timeToSpotPlayer);
+                yield return null;
+            }
         }
-        playerVisibleTimer = Mathf.Clamp (playerVisibleTimer, 0, timeToSpotPlayer);
-        lighting.color = Color.Lerp (patrolColor, chaseColor, playerVisibleTimer / timeToSpotPlayer);
+    }
+    private void CheckSoroundings ()
+    {
 
-        if (playerVisibleTimer >= timeToSpotPlayer)
+        if (CanSeePlayer ())
         {
+
             foundTarget = true;
 
             onPlayerFound?.Invoke ();
-
+            
             StartCoroutine (chase ());
+
         }
     }
     public bool CanSeePlayer ()
@@ -108,6 +123,7 @@ public class Chase : MonoBehaviour
 
     private IEnumerator chase ()
     {
+        StartCoroutine (ColorTransition (true));
         while (currentTarget != null)
         {
             Vector2 target = currentTarget.position;
@@ -117,6 +133,10 @@ public class Chase : MonoBehaviour
 
             yield return null;
         }
+        StopCoroutine (ColorTransition (true));
+
+        StartCoroutine (ColorTransition (false));
+
         foundTarget = false;
 
         onPlayerFound?.Invoke ();

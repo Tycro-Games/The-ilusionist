@@ -16,21 +16,18 @@ public class EnemyBrain : MonoBehaviour
     private void OnEnable ()
     {
         chase.onPlayerFound += ChangeBehavior;
-
     }
     private void OnDisable ()
     {
         chase.onPlayerFound -= ChangeBehavior;
-
     }
     private void ChangeBehavior ()
     {
-
         if (chase.foundTarget)
         {
             StopedPatrolling = true;
-            spot.StopAllCoroutines ();
 
+            spot.StopAllCoroutines ();
         }
         else if (StopedPatrolling)
         {
@@ -39,5 +36,4 @@ public class EnemyBrain : MonoBehaviour
             spot.StartCoroutine (spot.FollowPointsAfterChase ());
         }
     }
-
 }

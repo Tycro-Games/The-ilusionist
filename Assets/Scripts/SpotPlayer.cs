@@ -8,6 +8,7 @@ public class SpotPlayer : MonoBehaviour
 {
     [SerializeField]
     private Transform pathHolder = null;
+
     [Header ("Movement")]
     [SerializeField]
     private float moveSpeed = 10.0f;
@@ -126,7 +127,5 @@ public class SpotPlayer : MonoBehaviour
             previousPosition = waypoint.position;
         }
         Gizmos.DrawLine (previousPosition, startPosition);
-
-
     }
 }
