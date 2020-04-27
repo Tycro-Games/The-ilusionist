@@ -244,11 +244,11 @@ GameObject:
   - component: {fileID: 2297525922380179592}
   - component: {fileID: 2297525922380179593}
   - component: {fileID: 2297525922380179591}
-  - component: {fileID: 2297525922380179588}
+  - component: {fileID: 958179306}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
-  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -259,8 +259,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2297525922380179597}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.0425069, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2297525921864801965}
@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b81af73cf617fe84495fb5dd8c615bce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedMovement: 2.8
+  speedMovement: 1.7
 --- !u!114 &2297525922380179590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Illusion: {fileID: 611674829781918144, guid: 774d218aaff3d4a4691a4a198bfa1e3b, type: 3}
-  aliveIlussionTime: 50
+  aliveIlussionTime: 15
   maxDist: 100
   Ground:
     serializedVersion: 2
@@ -343,7 +343,7 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 1
   m_AffectedAgents: ffffffff
---- !u!114 &2297525922380179588
+--- !u!114 &958179306
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -352,6 +352,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2297525922380179597}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36a395a1602e319478aadce202366732, type: 3}
+  m_Script: {fileID: 11500000, guid: becbeab8fb09dbe488e71b30a0b10683, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

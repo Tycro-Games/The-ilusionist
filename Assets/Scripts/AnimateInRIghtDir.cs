@@ -11,14 +11,12 @@ public class AnimateInRIghtDir : MonoBehaviour
     // Start is called before the first frame update
     void Start ()
     {
-        agent = GetComponentInParent<NavMeshAgent> ();
-        anim = GetComponent<Animator> ();
+        agent = GetComponent<NavMeshAgent> ();
+        anim = GetComponentInChildren<Animator> ();
     }
     private void Update ()
     {
         Debug.DrawLine (transform.position, transform.position + agent.desiredVelocity.normalized);
-
-
     }
     public void DirHeaded ()
     {

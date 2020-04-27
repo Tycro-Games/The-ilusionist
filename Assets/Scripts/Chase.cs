@@ -123,7 +123,7 @@ public class Chase : MonoBehaviour
 
     private IEnumerator chase ()
     {
-        StartCoroutine (ColorTransition (true));
+       yield return StartCoroutine (ColorTransition (true));
         while (currentTarget != null)
         {
             Vector2 target = currentTarget.position;
@@ -133,9 +133,8 @@ public class Chase : MonoBehaviour
 
             yield return null;
         }
-        StopCoroutine (ColorTransition (true));
 
-        StartCoroutine (ColorTransition (false));
+        yield return StartCoroutine (ColorTransition (false));
 
         foundTarget = false;
 
@@ -160,5 +159,6 @@ public class Chase : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawRay (transform.position, transform.up * lighting.pointLightOuterRadius);
     }
+    
 }
 

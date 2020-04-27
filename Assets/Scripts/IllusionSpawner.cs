@@ -21,16 +21,16 @@ public class IllusionSpawner : MonoBehaviour
 
     private bool isUsingIlusion = false;
 
+ 
+
     public void Update ()
     {
         if (Input.GetKeyDown (KeyCode.Tab))
         {
             isUsingIlusion = !isUsingIlusion;
         }
-        if (Input.GetMouseButtonDown (1) && currentInstance != null)
-        {
-            Destroy (currentInstance.gameObject);
-        }
+        
+        
     }
     public void Spawn (InputAction.CallbackContext ctx)
     {
@@ -41,12 +41,16 @@ public class IllusionSpawner : MonoBehaviour
                 if (hit.transform.tag == "Ground" && currentInstance == null)
                 {
                     currentInstance = Instantiate (Illusion, transform.position, transform.rotation);
+                    
+
                     Destroy (currentInstance.gameObject, aliveIlussionTime);
                     agent = currentInstance.GetComponent<NavMeshAgent> ();
 
 
                     agent.SetDestination ((Vector2)hit.point);
                     isUsingIlusion = false;
+
+                    
                 }
 
         }
