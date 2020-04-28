@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate ()
     {
         Move ();
+        Rotate ();
     }
     private void Update ()
     {
@@ -28,6 +29,14 @@ public class PlayerMovement : MonoBehaviour
     public void SetMovement (InputAction.CallbackContext ctx)
     {
         movement = ctx.ReadValue<Vector2> ();
+    }
+    private void Rotate ()
+    {
+        if (movement != Vector2.zero)
+        {
+            Quaternion newRot = Quaternion.LookRotation (transform.forward, movement);
+            transform.rotation = newRot;
+        }
     }
     private void Move ()
     {

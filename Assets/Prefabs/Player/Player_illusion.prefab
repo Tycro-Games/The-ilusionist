@@ -125,10 +125,10 @@ GameObject:
   m_Component:
   - component: {fileID: 611674829781918147}
   - component: {fileID: 611674829781918146}
-  - component: {fileID: 4139864417610792413}
   - component: {fileID: 8508405509908139333}
   - component: {fileID: 3350657128414193109}
   - component: {fileID: 8436692036269328565}
+  - component: {fileID: 3681399149951940135}
   m_Layer: 9
   m_Name: Player_illusion
   m_TagString: Player
@@ -173,19 +173,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!65 &4139864417610792413
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 611674829781918144}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1, z: 0.1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8508405509908139333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,3 +214,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25bbdb131e7c0e34da33d4ea37cb12fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &3681399149951940135
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611674829781918144}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.11
+  m_Center: {x: 0, y: 0, z: 0}

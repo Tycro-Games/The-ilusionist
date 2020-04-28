@@ -1,26 +1,37 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Disolve : MonoBehaviour
+public class DissolveThoughWalls : MonoBehaviour
 {
     [SerializeField]
     private Material disolve = null;
     SpriteRenderer sprite;
-    private void OnEnable ()
-    {
-        DeadOnTouch.onDestroy += FadeOut;
-    }
-    private void OnDisable ()
-    {
-        DeadOnTouch.onDestroy -= FadeOut;
-    }
+
+    [SerializeField]
+    private float multiplier = 1.0f;
     private void Start ()
     {
         sprite = GetComponent<SpriteRenderer> ();
         disolve = new Material (disolve);
         sprite.material = disolve;
-        StartCoroutine (FadeIn ());
+        disolve.SetFloat ("_Fade", 1);
     }
+    private void OnTriggerEnter (Collider other)
+    {
+        if (other.tag == "Enviroment")
+        {
+            StartCoroutine (FadeOut ());
+        }
+    }
+    private void OnTriggerExit (Collider other)
+    {
+        if (other.tag == "Enviroment")
+        {
+            StartCoroutine (FadeIn ());
+        }
+    }
+
     private IEnumerator FadeIn ()
     {
         float fade = 0;
@@ -28,7 +39,8 @@ public class Disolve : MonoBehaviour
         disolve.SetFloat ("_Fade", fade);
         while (fade < 1)
         {
-            fade += Time.deltaTime;
+            fade += Time.deltaTime*multiplier;
+           
             disolve.SetFloat ("_Fade", fade);
             yield return null;
         }
@@ -40,11 +52,11 @@ public class Disolve : MonoBehaviour
         disolve.SetFloat ("_Fade", fade);
         while (fade > 0)
         {
-            fade -= Time.deltaTime;
+            fade -= Time.deltaTime * multiplier;
+            
             disolve.SetFloat ("_Fade", fade);
-
             yield return null;
         }
-        Destroy (gameObject);
+       
     }
 }

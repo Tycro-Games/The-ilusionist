@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ilussion
+  m_Name: Enemy
   m_Shader: {fileID: -6465566751694194690, guid: 8c389d620e40e81408a53c2bdb6ba9d4,
     type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -39,9 +39,9 @@ Material:
     m_Floats:
     - _EnableExternalAlpha: 0
     - _Fade: 1
-    - _Scale: 100
+    - _Scale: 10
     m_Colors:
-    - Color_7A0CCA10: {r: 0.47861287, g: 5.3403134, b: 4.285422, a: 0}
+    - Color_7A0CCA10: {r: 5.3403134, g: 0.57097685, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
