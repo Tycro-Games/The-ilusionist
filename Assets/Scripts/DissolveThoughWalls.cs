@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class DissolveThoughWalls : MonoBehaviour
 {
@@ -10,8 +11,11 @@ public class DissolveThoughWalls : MonoBehaviour
 
     [SerializeField]
     private float multiplier = 1.0f;
+
+    private Light2D light;
     private void Start ()
     {
+        light = GetComponentInParent<Light2D> ();
         sprite = GetComponent<SpriteRenderer> ();
         disolve = new Material (disolve);
         sprite.material = disolve;
@@ -21,6 +25,7 @@ public class DissolveThoughWalls : MonoBehaviour
     {
         if (other.tag == "Enviroment")
         {
+            light.enabled = false;
             StartCoroutine (FadeOut ());
         }
     }
@@ -28,6 +33,7 @@ public class DissolveThoughWalls : MonoBehaviour
     {
         if (other.tag == "Enviroment")
         {
+            light.enabled = true;
             StartCoroutine (FadeIn ());
         }
     }
