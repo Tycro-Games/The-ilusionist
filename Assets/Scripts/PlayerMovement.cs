@@ -10,11 +10,16 @@ public class PlayerMovement : MonoBehaviour
     private float speedMovement = 6.0f;
     Rigidbody rb;
 
+    Animator anim;
+
+
     //Input
     private Vector2 movement;
     private Vector2 move;
     void Start ()
     {
+        anim = GetComponentInChildren<Animator> ();
+
         rb = GetComponent<Rigidbody> ();
     }
     private void FixedUpdate ()
@@ -41,10 +46,17 @@ public class PlayerMovement : MonoBehaviour
     private void Move ()
     {
         move = movement;
-        move *= Time.fixedDeltaTime * speedMovement;
+        if (move != Vector2.zero)
+        {
+            anim.SetBool ("Walk", true);
+            move *= Time.fixedDeltaTime * speedMovement;
 
-        rb.MovePosition ((Vector2)rb.position + move);
-
+            rb.MovePosition ((Vector2)rb.position + move);
+        }
+        else
+        {
+            anim.SetBool ("Walk", false);
+        }
     }
 
 

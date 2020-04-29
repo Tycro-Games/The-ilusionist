@@ -4,6 +4,8 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class Chase : MonoBehaviour
 {
+    private Animator anim;
+
     [SerializeField]
     private Light2D lighting;
 
@@ -39,6 +41,8 @@ public class Chase : MonoBehaviour
     public event OnPlayerFound onPlayerFound;
     private void Start ()
     {
+        anim = GetComponentInChildren<Animator> ();
+
         lighting = GetComponent<Light2D> ();
     }
     private void Update ()
@@ -127,15 +131,14 @@ public class Chase : MonoBehaviour
         while (currentTarget != null)
         {
             Vector2 target = currentTarget.position;
-
+            anim.SetBool ("Walk", true);
             RotateToTarget (target);
             Move (target, chaseSpeed);
 
             yield return null;
         }
-
         yield return StartCoroutine (ColorTransition (false));
-
+        anim.SetBool ("Walk", false);
         foundTarget = false;
 
         onPlayerFound?.Invoke ();

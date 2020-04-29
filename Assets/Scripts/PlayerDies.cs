@@ -1,14 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerDies : MonoBehaviour
 {
     private void OnTriggerEnter (Collider other)
     {
-        if (other.tag == "Enemy")
+        if (other.CompareTag ("Enemy"))
         {
-            Destroy (gameObject);//event
+            SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
         }
     }
 }

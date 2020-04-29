@@ -22,7 +22,7 @@ public class DeadOnTouch : MonoBehaviour
             Disolve ();
         }
     }
-    void Disolve ()
+   public void Disolve ()
     {
         GetComponentInChildren<Disolve> ().StartCoroutine (onDestroy ());
         if (DetashChild)

@@ -6,6 +6,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class SpotPlayer : MonoBehaviour
 {
+    private Animator anim;
     [SerializeField]
     private Transform pathHolder = null;
 
@@ -29,6 +30,8 @@ public class SpotPlayer : MonoBehaviour
 
     private void Start ()
     {
+        anim = GetComponentInChildren<Animator> ();
+
         injectPoints ();
     }
     private void injectPoints ()
@@ -60,10 +63,11 @@ public class SpotPlayer : MonoBehaviour
         yield return StartCoroutine (RotateToPoint (currentPoint));
         while (true)
         {
-
+            anim.SetBool ("Walk", true);
             Move (Points[index], moveSpeed);
             if ((Vector2)transform.position == Points[index])
             {
+                anim.SetBool ("Walk", false);
                 index = (index + 1) % Points.Length;
                 currentPoint = Points[index];
                 yield return new WaitForSeconds (timeToWait);
@@ -77,10 +81,11 @@ public class SpotPlayer : MonoBehaviour
     {
         while (true)
         {
-
+            anim.SetBool ("Walk", true);
             Move (Points[index], moveSpeed);
             if ((Vector2)transform.position == Points[index])
             {
+                anim.SetBool ("Walk", false);
                 index = (index + 1) % Points.Length;
                 currentPoint = Points[index];
                 yield return new WaitForSeconds (timeToWait);
