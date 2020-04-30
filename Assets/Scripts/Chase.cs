@@ -82,7 +82,7 @@ public class Chase : MonoBehaviour
             foundTarget = true;
 
             onPlayerFound?.Invoke ();
-            
+
             StartCoroutine (chase ());
 
         }
@@ -127,7 +127,7 @@ public class Chase : MonoBehaviour
 
     private IEnumerator chase ()
     {
-       yield return StartCoroutine (ColorTransition (true));
+        yield return StartCoroutine (ColorTransition (true));
         while (currentTarget != null)
         {
             Vector2 target = currentTarget.position;
@@ -162,6 +162,6 @@ public class Chase : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawRay (transform.position, transform.up * lighting.pointLightOuterRadius);
     }
-    
+
 }
 

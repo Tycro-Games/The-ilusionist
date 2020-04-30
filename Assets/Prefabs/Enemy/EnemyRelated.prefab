@@ -148,36 +148,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &802662950951923107
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 802662950951923106}
-  m_Layer: 0
-  m_Name: GameObject (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &802662950951923106
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 802662950951923107}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.69, y: 1.85, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 802662951959429948}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &802662951315635064
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathHolder: {fileID: 802662951959429948}
-  moveSpeed: 1.25
+  moveSpeed: 1.5
   timeToWait: 0.75
   turnSpeed: 125
 --- !u!114 &802662951315635063
@@ -248,10 +218,10 @@ MonoBehaviour:
     m_Bits: 512
   viewLayer:
     serializedVersion: 2
-    m_Bits: 823
+    m_Bits: 513
   patrolColor: {r: 0.18472636, g: 1, b: 0, a: 0}
   chaseColor: {r: 1, g: 0, b: 0, a: 0}
-  chaseSpeed: 2
+  chaseSpeed: 2.5
   foundTarget: 0
   timeToSpotPlayer: 0.1
   chaseTurnSpeed: 150
@@ -269,16 +239,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.66
+  m_FalloffIntensity: 0.45
   m_Color: {r: 0.18431373, g: 1, b: 0, a: 0}
-  m_Intensity: 1
-  m_LightVolumeOpacity: 0.23
-  m_ApplyToSortingLayers: 00000000
+  m_Intensity: 2.15
+  m_LightVolumeOpacity: 0
+  m_ApplyToSortingLayers: 0000000083687935
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 1
   m_LightOrder: 0
-  m_AlphaBlendOnOverlap: 1
-  m_ShadowIntensity: 0.06
+  m_AlphaBlendOnOverlap: 0
+  m_ShadowIntensity: 1
   m_ShadowVolumeIntensity: 0
   m_PointLightInnerAngle: 43.97
   m_PointLightOuterAngle: 75
@@ -377,41 +347,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 802662951959429949}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 802662953060747468}
-  - {fileID: 802662950951923106}
-  m_Father: {fileID: 802662951916230489}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &802662953060747469
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 802662953060747468}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &802662953060747468
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 802662953060747469}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.56, y: -1.13, z: 0}
+  m_LocalPosition: {x: -1.81, y: -2.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 802662951959429948}
+  m_Father: {fileID: 802662951916230489}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

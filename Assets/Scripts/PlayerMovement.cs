@@ -46,17 +46,16 @@ public class PlayerMovement : MonoBehaviour
     private void Move ()
     {
         move = movement;
+
         if (move != Vector2.zero)
         {
             anim.SetBool ("Walk", true);
             move *= Time.fixedDeltaTime * speedMovement;
-
+            
             rb.MovePosition ((Vector2)rb.position + move);
         }
-        else
-        {
+        else if(!Input.GetKey(KeyCode.A)&&!Input.GetKey(KeyCode.D))
             anim.SetBool ("Walk", false);
-        }
     }
 
 

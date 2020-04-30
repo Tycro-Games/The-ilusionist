@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class IllusionSpawner : MonoBehaviour
 {
@@ -40,25 +41,27 @@ public class IllusionSpawner : MonoBehaviour
     }
     public void Spawn (InputAction.CallbackContext ctx)
     {
-        if (ctx.ReadValueAsButton () && currentInstance == null)
-        {
-            Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-            if (Physics.Raycast (ray, out RaycastHit hit, maxDist, Ground))
-                if (hit.transform.tag == "Ground")
-                {
-                    currentInstance = Instantiate (Illusion, transform.position, transform.rotation);
+        if (SceneManager.GetActiveScene ().buildIndex == 0)
+            return;
+            if (ctx.ReadValueAsButton () && currentInstance == null)
+            {
+                Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+                if (Physics.Raycast (ray, out RaycastHit hit, maxDist, Ground))
+                    if (hit.transform.tag == "Ground")
+                    {
+                        currentInstance = Instantiate (Illusion, transform.position, transform.rotation);
 
 
 
-                    agent = currentInstance.GetComponent<NavMeshAgent> ();
+                        agent = currentInstance.GetComponent<NavMeshAgent> ();
 
 
-                    agent.SetDestination ((Vector2)hit.point);
+                        agent.SetDestination ((Vector2)hit.point);
 
 
 
-                }
+                    }
 
-        }
+            }
     }
 }
