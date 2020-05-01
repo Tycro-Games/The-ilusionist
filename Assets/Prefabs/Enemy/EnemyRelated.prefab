@@ -177,7 +177,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 802662951315635064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.94000006, y: -2.58, z: 0}
+  m_LocalPosition: {x: 2.2, y: -1.88, z: -0.329}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2101810749}
@@ -219,8 +219,8 @@ MonoBehaviour:
   viewLayer:
     serializedVersion: 2
     m_Bits: 513
-  patrolColor: {r: 0.18472636, g: 1, b: 0, a: 0}
-  chaseColor: {r: 1, g: 0, b: 0, a: 0}
+  patrolColor: {r: 0.3921569, g: 0.74509805, b: 0.3137255, a: 0}
+  chaseColor: {r: 0.74509805, g: 0.3262677, b: 0.3137255, a: 0}
   chaseSpeed: 2.5
   foundTarget: 0
   timeToSpotPlayer: 0.1
@@ -240,16 +240,16 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.45
-  m_Color: {r: 0.18431373, g: 1, b: 0, a: 0}
-  m_Intensity: 2.15
-  m_LightVolumeOpacity: 0
+  m_Color: {r: 0.39229953, g: 0.745283, b: 0.31287822, a: 0}
+  m_Intensity: 3.35
+  m_LightVolumeOpacity: 0.088
   m_ApplyToSortingLayers: 0000000083687935
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 1
   m_LightOrder: 0
   m_AlphaBlendOnOverlap: 0
   m_ShadowIntensity: 1
-  m_ShadowVolumeIntensity: 0
+  m_ShadowVolumeIntensity: 1
   m_PointLightInnerAngle: 43.97
   m_PointLightOuterAngle: 75
   m_PointLightInnerRadius: 1

@@ -41,7 +41,7 @@ Material:
     - _Fade: 1
     - _Scale: 100
     m_Colors:
-    - Color_7A0CCA10: {r: 0.47861287, g: 5.3403134, b: 4.285422, a: 0}
+    - Color_7A0CCA10: {r: 6.839215, g: 3.7239704, b: 6.588563, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

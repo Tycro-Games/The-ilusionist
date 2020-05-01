@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class IllusionSpawner : MonoBehaviour
 {
+    [SerializeField]
+    private float normalSpeed = 2.0f;
+
     private NavMeshAgent agent = null;
     private GameObject currentInstance = null;
 
@@ -37,30 +40,46 @@ public class IllusionSpawner : MonoBehaviour
         {
             anim.SetBool ("AbilityReady", false);
         }
-
+        Queue ();
     }
     public void Spawn (InputAction.CallbackContext ctx)
     {
         if (SceneManager.GetActiveScene ().buildIndex == 0)
             return;
-            if (ctx.ReadValueAsButton () && currentInstance == null)
+
+
+
+        if (ctx.ReadValueAsButton () && currentInstance == null)
+        {
+            Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+            if (Physics.Raycast (ray, out RaycastHit hit, maxDist, Ground))
+                if (hit.transform.tag == "Ground")
+                {
+                    currentInstance = Instantiate (Illusion, transform.position, transform.rotation);
+
+
+
+                    agent = currentInstance.GetComponent<NavMeshAgent> ();
+
+
+                    agent.SetDestination ((Vector2)hit.point);
+
+
+
+                }
+
+        }
+    }
+    public void Queue ()
+    {
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+            if (currentInstance != null)
             {
+                agent.speed = normalSpeed;
                 Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
                 if (Physics.Raycast (ray, out RaycastHit hit, maxDist, Ground))
                     if (hit.transform.tag == "Ground")
-                    {
-                        currentInstance = Instantiate (Illusion, transform.position, transform.rotation);
-
-
-
-                        agent = currentInstance.GetComponent<NavMeshAgent> ();
-
-
-                        agent.SetDestination ((Vector2)hit.point);
-
-
-
-                    }
+                        agent.destination = (Vector2)hit.point;
 
             }
     }

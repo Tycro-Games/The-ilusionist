@@ -26,13 +26,14 @@ public class AnimatorSettings : MonoBehaviour
 
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
-
-            DestruyThis ();
+            anim.SetBool ("ReachedDest", true);
         }
+        else
+            anim.SetBool ("ReachedDest", false); ;
     }
    public void DestruyThis ()
     {
-        anim.SetTrigger ("ReachedDest");
+        anim.SetBool ("ReachedDest", true);
         Destroy (this);
     }
 

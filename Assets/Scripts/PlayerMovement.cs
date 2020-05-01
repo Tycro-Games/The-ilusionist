@@ -30,6 +30,13 @@ public class PlayerMovement : MonoBehaviour
     private void Update ()
     {
         StaticInfo.GetPlayerPos (transform.position);
+          
+        if(!Input.GetKey(KeyCode.A)&& !Input.GetKey (KeyCode.W)&& !Input.GetKey (KeyCode.S)&& !Input.GetKey (KeyCode.D))
+            anim.SetBool ("Walk", false);
+        if (Input.GetKey (KeyCode.A) && Input.GetKey (KeyCode.D))
+            anim.SetBool ("Walk", false);
+        if (Input.GetKey (KeyCode.W) && Input.GetKey (KeyCode.S))
+            anim.SetBool ("Walk", false);
     }
     public void SetMovement (InputAction.CallbackContext ctx)
     {
@@ -46,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
     private void Move ()
     {
         move = movement;
-
+     
         if (move != Vector2.zero)
         {
             anim.SetBool ("Walk", true);
@@ -54,8 +61,9 @@ public class PlayerMovement : MonoBehaviour
             
             rb.MovePosition ((Vector2)rb.position + move);
         }
-        else if(!Input.GetKey(KeyCode.A)&&!Input.GetKey(KeyCode.D))
-            anim.SetBool ("Walk", false);
+        
+        
+        
     }
 
 

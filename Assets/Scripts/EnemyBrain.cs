@@ -33,6 +33,7 @@ public class EnemyBrain : MonoBehaviour
         {
             StopedPatrolling = false;
             
+            if(spot.Points.Length!=1)
             spot.StartCoroutine (spot.FollowPointsAfterChase ());
         }
     }

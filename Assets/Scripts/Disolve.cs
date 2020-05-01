@@ -39,6 +39,8 @@ public class Disolve : MonoBehaviour
     }
     public IEnumerator FadeOut ()
     {
+        if (animSet == null)
+            yield break;
         float fade = 1;
 
         disolve.SetFloat ("_Fade", fade);

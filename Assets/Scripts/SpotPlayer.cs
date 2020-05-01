@@ -26,7 +26,7 @@ public class SpotPlayer : MonoBehaviour
     [SerializeField]
     private float turnSpeed = 10.0f;
 
-    private Vector2[] Points;
+    public Vector2[] Points;
 
     private void Start ()
     {
@@ -37,6 +37,8 @@ public class SpotPlayer : MonoBehaviour
     private void injectPoints ()
     {
         int count = pathHolder.childCount;
+        if (count == 0 )
+            return;
         Points = new Vector2[count];
 
 
@@ -46,6 +48,8 @@ public class SpotPlayer : MonoBehaviour
         }
 
         index = 1;
+        if (Points.Length == 1)
+            return;
         currentPoint = Points[index];
 
         transform.position = Points[0];
@@ -116,7 +120,8 @@ public class SpotPlayer : MonoBehaviour
     }
     void OnDrawGizmos ()
     {
-
+        if (pathHolder.childCount == 0)
+            return;
         Vector2 startPosition = pathHolder.GetChild (0).position;
         Vector2 previousPosition = startPosition;
 
