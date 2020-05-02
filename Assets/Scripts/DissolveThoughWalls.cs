@@ -12,14 +12,14 @@ public class DissolveThoughWalls : MonoBehaviour
     [SerializeField]
     private float multiplier = 1.0f;
 
-    private Light2D light;
+    private Light2D lighting = null;
     [SerializeField]
-    private float maxIn;
+    private float maxIn = 1.0f;
     [SerializeField]
-    private float minOut;
+    private float minOut = 0.0f;
     private void Start ()
     {
-        light = GetComponentInParent<Light2D> ();
+        lighting = GetComponentInParent<Light2D> ();
         sprite = GetComponent<SpriteRenderer> ();
         disolve = new Material (disolve);
         sprite.material = disolve;
@@ -29,7 +29,7 @@ public class DissolveThoughWalls : MonoBehaviour
     {
         if (other.tag == "Enviroment")
         {
-            light.enabled = false;
+            lighting.enabled = false;
             StartCoroutine (FadeOut ());
         }
     }
@@ -37,7 +37,7 @@ public class DissolveThoughWalls : MonoBehaviour
     {
         if (other.tag == "Enviroment")
         {
-            light.enabled = true;
+            lighting.enabled = true;
             StartCoroutine (FadeIn ());
         }
     }
@@ -49,8 +49,8 @@ public class DissolveThoughWalls : MonoBehaviour
         disolve.SetFloat ("_Fade", fade);
         while (fade < maxIn)
         {
-            fade += Time.deltaTime*multiplier;
-           
+            fade += Time.deltaTime * multiplier;
+
             disolve.SetFloat ("_Fade", fade);
             yield return null;
         }
@@ -63,10 +63,10 @@ public class DissolveThoughWalls : MonoBehaviour
         while (fade > minOut)
         {
             fade -= Time.deltaTime * multiplier;
-            
+
             disolve.SetFloat ("_Fade", fade);
             yield return null;
         }
-       
+
     }
 }

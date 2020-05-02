@@ -23,6 +23,8 @@ public class AnimatorSettings : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
+        if (agent == null)
+            return;
 
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
@@ -31,7 +33,7 @@ public class AnimatorSettings : MonoBehaviour
         else
             anim.SetBool ("ReachedDest", false); ;
     }
-   public void DestruyThis ()
+    public void DestruyThis ()
     {
         anim.SetBool ("ReachedDest", true);
         Destroy (this);

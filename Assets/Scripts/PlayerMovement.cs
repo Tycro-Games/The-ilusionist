@@ -9,8 +9,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float speedMovement = 6.0f;
     Rigidbody rb;
-
+    AudioPlay Audioplay=null;
     Animator anim;
+
 
 
     //Input
@@ -18,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 move;
     void Start ()
     {
+        Audioplay = GetComponentInChildren<AudioPlay> ();
+
         anim = GetComponentInChildren<Animator> ();
 
         rb = GetComponent<Rigidbody> ();
@@ -46,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (movement != Vector2.zero)
         {
+            if (!Audioplay.source.isPlaying)
+                Audioplay.PlayASound ();
             Quaternion newRot = Quaternion.LookRotation (transform.forward, movement);
             transform.rotation = newRot;
         }
