@@ -13,13 +13,17 @@ public class DissolveThoughWalls : MonoBehaviour
     private float multiplier = 1.0f;
 
     private Light2D light;
+    [SerializeField]
+    private float maxIn;
+    [SerializeField]
+    private float minOut;
     private void Start ()
     {
         light = GetComponentInParent<Light2D> ();
         sprite = GetComponent<SpriteRenderer> ();
         disolve = new Material (disolve);
         sprite.material = disolve;
-        disolve.SetFloat ("_Fade", 1);
+        disolve.SetFloat ("_Fade", maxIn);
     }
     private void OnTriggerEnter (Collider other)
     {
@@ -40,10 +44,10 @@ public class DissolveThoughWalls : MonoBehaviour
 
     private IEnumerator FadeIn ()
     {
-        float fade = 0;
+        float fade = minOut;
 
         disolve.SetFloat ("_Fade", fade);
-        while (fade < 1)
+        while (fade < maxIn)
         {
             fade += Time.deltaTime*multiplier;
            
@@ -53,10 +57,10 @@ public class DissolveThoughWalls : MonoBehaviour
     }
     public IEnumerator FadeOut ()
     {
-        float fade = 1;
+        float fade = maxIn;
 
         disolve.SetFloat ("_Fade", fade);
-        while (fade > 0)
+        while (fade > minOut)
         {
             fade -= Time.deltaTime * multiplier;
             

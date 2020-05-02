@@ -46,6 +46,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Change: {fileID: 21300000, guid: 1e652fa2796fd2f4facc2bf3f1b10b9f, type: 3}
+  active: 0
+  changeAble: 0
+  Activate:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!135 &739217740
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -97,7 +102,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -104
   m_Sprite: {fileID: 21300000, guid: fd8eacc58682a9f409b49ba4a4ec0a3d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

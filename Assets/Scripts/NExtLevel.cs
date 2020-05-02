@@ -8,22 +8,46 @@ public class NExtLevel : MonoBehaviour
     SpriteRenderer sprite;
     [SerializeField]
     Sprite Change;
-    private bool active = false;
+    public bool active = false;
+
+    [SerializeField]
+    private bool changeAble = false;
+
+    [SerializeField]
+    private LayerMask Activate;
     private void Start ()
     {
         sprite = GetComponent<SpriteRenderer> ();
     }
-    private void OnTriggerEnter (Collider other)
+    private void Update ()
     {
-        if (other.CompareTag ("Player"))
+        if (Physics.CheckSphere (transform.position, .3f, Activate) )
         {
+            if (active == false)
             StartCoroutine (ChangeLook ());
         }
+        else if (changeAble && active)
+        {
+            active = false;
+            ChangeSprite ();
+            Debug.Log ("Switch off");
+        }
+       
+
     }
+    void ChangeSprite ()
+    {
+        Sprite sp = sprite.sprite;
+        sprite.sprite = Change;
+        Change = sp;
+    }
+
     IEnumerator ChangeLook ()
     {
-        sprite.sprite = Change;
+        ChangeSprite ();
+        active = true;
         yield return new WaitForSeconds (2);
-        SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+
+        LevelCheck.NextLevel ();
     }
 }

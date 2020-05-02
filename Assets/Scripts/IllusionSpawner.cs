@@ -15,7 +15,7 @@ public class IllusionSpawner : MonoBehaviour
     [SerializeField]
     private GameObject Illusion = null;
     [SerializeField]
-    private float aliveIlussionTime = 10.0f;
+    private float firerate;
 
     [Header ("Raycast")]
     [SerializeField]
