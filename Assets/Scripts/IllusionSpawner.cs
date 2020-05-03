@@ -15,7 +15,8 @@ public class IllusionSpawner : MonoBehaviour
     [SerializeField]
     private GameObject Illusion = null;
     [SerializeField]
-    private float firerate;
+    private float firerate = .5f;
+    private float currentTime = 0;
 
     [Header ("Raycast")]
     [SerializeField]
@@ -23,15 +24,21 @@ public class IllusionSpawner : MonoBehaviour
     [SerializeField]
     private LayerMask Ground = new LayerMask ();
 
+    private TeleportSound teleport;
+
     private Animator anim;
     private void Start ()
     {
         anim = GetComponentInChildren<Animator> ();
+        teleport = GetComponentInChildren<TeleportSound> ();
     }
 
     public void Update ()
     {
-        
+        if (currentTime > 0)
+            currentTime -= Time.deltaTime;
+
+
         if (currentInstance == null)
         {
             anim.SetBool ("AbilityReady", true);
@@ -41,20 +48,25 @@ public class IllusionSpawner : MonoBehaviour
             Queue ();
             anim.SetBool ("AbilityReady", false);
         }
-        
+
     }
     public void Spawn (InputAction.CallbackContext ctx)
     {
-        if (SceneManager.GetActiveScene ().buildIndex == 0)
+        if (SceneManager.GetActiveScene ().buildIndex == 1)
             return;
 
-        if (ctx.ReadValueAsButton () && currentInstance == null)
+        if (ctx.ReadValueAsButton () && currentInstance == null && currentTime <= 0)
         {
+            currentTime = firerate;
+
             Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
             if (Physics.Raycast (ray, out RaycastHit hit, maxDist, Ground))
                 if (hit.transform.tag == "Ground")
                 {
+                    teleport.TeleportingSound (false);
                     currentInstance = Instantiate (Illusion, transform.position, transform.rotation);
+
+                    currentInstance.GetComponent<DeadOnTouch> ().inject (teleport);
 
                     agent = currentInstance.GetComponent<NavMeshAgent> ();
 

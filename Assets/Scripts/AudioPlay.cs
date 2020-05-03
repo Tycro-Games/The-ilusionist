@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[RequireComponent (typeof (AudioSource))]
 public class AudioPlay : MonoBehaviour
 {
     [SerializeField]
     private AudioClip[] walkSound;
+   
     [HideInInspector]
     public AudioSource source = null;
 
@@ -21,4 +22,5 @@ public class AudioPlay : MonoBehaviour
 
         source.Play ();
     }
+    
 }

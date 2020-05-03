@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Music : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private AudioPlay play;
+
+    void Start ()
     {
+        play = GetComponent<AudioPlay> ();
+
         DontDestroyOnLoad (gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    void Update ()
     {
-        
+        if (!play.source.isPlaying)
+            play.PlayASound ();
     }
 }

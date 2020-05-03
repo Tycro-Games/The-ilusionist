@@ -15,28 +15,44 @@ public class NExtLevel : MonoBehaviour
 
     [SerializeField]
     private LayerMask Activate;
+
+    [SerializeField]
+    private AudioClip reversed;
+    private AudioSource play;
+
     private void Start ()
     {
+        play = GetComponent<AudioSource> ();
         sprite = GetComponent<SpriteRenderer> ();
     }
     private void Update ()
     {
-        if (Physics.CheckSphere (transform.position, .3f, Activate) )
+        if (Physics.CheckSphere (transform.position, .3f, Activate))
         {
             if (active == false)
-            StartCoroutine (ChangeLook ());
+                StartCoroutine (ChangeLook ());
         }
         else if (changeAble && active)
         {
             active = false;
             ChangeSprite ();
-            Debug.Log ("Switch off");
         }
-       
+
 
     }
     void ChangeSprite ()
     {
+        if (changeAble)
+        {
+            AudioClip Switc = play.clip;
+            play.clip = reversed;
+            reversed = play.clip;
+        }
+
+        play.Play ();
+
+
+
         Sprite sp = sprite.sprite;
         sprite.sprite = Change;
         Change = sp;

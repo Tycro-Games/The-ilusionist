@@ -15,6 +15,7 @@ public class Disolve : MonoBehaviour
     {
         DeadOnTouch.onDestroy -= FadeOut;
     }
+    
     private void Start ()
     {
         animSet = GetComponent<AnimatorSettings> ();
