@@ -38,10 +38,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _Fade: 0.405
-    - _Scale: 103.41
+    - _Fade: 1
+    - _Scale: 10
     m_Colors:
-    - Color_7A0CCA10: {r: 147.65498, g: 197.34657, b: 271.17407, a: 0}
+    - Color_7A0CCA10: {r: 5.3403134, g: 0.57097685, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

@@ -28,25 +28,12 @@ public class SpotPlayer : MonoBehaviour
 
     public Vector2[] Points;
 
-    AudioPlay play;
-
     private void Start ()
     {
-        play = GetComponent<AudioPlay> ();
-
         anim = GetComponentInChildren<Animator> ();
 
         injectPoints ();
     }
-    private void Update ()
-    {
-        if (anim.GetBool ("Walk"))
-        {
-            if (!play.source.isPlaying)
-                play.PlayASound ();
-        }
-    }
-
     private void injectPoints ()
     {
         int count = pathHolder.childCount;
@@ -98,7 +85,6 @@ public class SpotPlayer : MonoBehaviour
     {
         while (true)
         {
-
             anim.SetBool ("Walk", true);
             Move (Points[index], moveSpeed);
             if ((Vector2)transform.position == Points[index])
@@ -132,7 +118,7 @@ public class SpotPlayer : MonoBehaviour
         Vector2 dir = (target - (Vector2)transform.position).normalized;
         return dir;
     }
-    void OnDrawGizmosSelected ()
+    void OnDrawGizmos ()
     {
         if (pathHolder.childCount == 0)
             return;

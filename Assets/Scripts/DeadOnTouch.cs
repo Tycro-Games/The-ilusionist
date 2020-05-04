@@ -8,18 +8,12 @@ public class DeadOnTouch : MonoBehaviour
 
     public delegate IEnumerator OnDestroy ();
     public static event OnDestroy onDestroy;
-
-    private TeleportSound teleport;
     private void OnTriggerStay (Collider other)
     {
         if (other.tag == "Enemy")
         {
             Disolve ();
         }
-    }
-    public void inject (TeleportSound Teleport)
-    {
-        teleport = Teleport;
     }
     private void Update ()
     {
@@ -28,10 +22,8 @@ public class DeadOnTouch : MonoBehaviour
             Disolve ();
         }
     }
-    public void Disolve ()
+   public void Disolve ()
     {
-        teleport.TeleportingSound (true);
-
         GetComponentInChildren<Disolve> ().StartCoroutine (onDestroy ());
         if (DetashChild)
             transform.GetChild (0).parent = null;

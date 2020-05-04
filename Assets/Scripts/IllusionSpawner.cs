@@ -15,8 +15,7 @@ public class IllusionSpawner : MonoBehaviour
     [SerializeField]
     private GameObject Illusion = null;
     [SerializeField]
-    private float firerate = .5f;
-    private float currentTime = 0;
+    private float firerate;
 
     [Header ("Raycast")]
     [SerializeField]
@@ -24,20 +23,14 @@ public class IllusionSpawner : MonoBehaviour
     [SerializeField]
     private LayerMask Ground = new LayerMask ();
 
-    private TeleportSound teleport;
-
     private Animator anim;
     private void Start ()
     {
         anim = GetComponentInChildren<Animator> ();
-        teleport = GetComponentInChildren<TeleportSound> ();
     }
 
     public void Update ()
     {
-        if (currentTime > 0)
-            currentTime -= Time.deltaTime;
-
 
         if (currentInstance == null)
         {
@@ -45,32 +38,34 @@ public class IllusionSpawner : MonoBehaviour
         }
         else
         {
-            Queue ();
             anim.SetBool ("AbilityReady", false);
         }
-
+        Queue ();
     }
     public void Spawn (InputAction.CallbackContext ctx)
     {
-        if (SceneManager.GetActiveScene ().buildIndex == 1)
+        if (SceneManager.GetActiveScene ().buildIndex == 0)
             return;
 
-        if (ctx.ReadValueAsButton () && currentInstance == null && currentTime <= 0)
-        {
-            currentTime = firerate;
 
+
+        if (ctx.ReadValueAsButton () && currentInstance == null)
+        {
             Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
             if (Physics.Raycast (ray, out RaycastHit hit, maxDist, Ground))
                 if (hit.transform.tag == "Ground")
                 {
-                    teleport.TeleportingSound (false);
                     currentInstance = Instantiate (Illusion, transform.position, transform.rotation);
 
-                    currentInstance.GetComponent<DeadOnTouch> ().inject (teleport);
+
 
                     agent = currentInstance.GetComponent<NavMeshAgent> ();
 
+
                     agent.SetDestination ((Vector2)hit.point);
+
+
+
                 }
 
         }
@@ -85,6 +80,7 @@ public class IllusionSpawner : MonoBehaviour
                 if (Physics.Raycast (ray, out RaycastHit hit, maxDist, Ground))
                     if (hit.transform.tag == "Ground")
                         agent.destination = (Vector2)hit.point;
+
             }
     }
 }
