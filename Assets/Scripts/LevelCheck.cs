@@ -8,9 +8,12 @@ public class LevelCheck : MonoBehaviour
     public static LevelCheck level;
     public static NExtLevel[] checks;
 
+    private static AudioSource play;
+
     // Start is called before the first frame update
     void Start ()
     {
+        play = GetComponent<AudioSource> ();
         if (level == null)
             level = this;
         else if (level != this)
@@ -18,7 +21,7 @@ public class LevelCheck : MonoBehaviour
 
         checks = FindObjectsOfType<NExtLevel> ();
     }
-    public static void NextLevel ()
+    public static IEnumerator NextLevel (float waitTime)
     {
         bool allChecks = true;
         for (int i = 0; i < checks.Length; i++)
@@ -30,10 +33,12 @@ public class LevelCheck : MonoBehaviour
             }
         }
 
-
-
         if (allChecks)
+        {
+            play.Play ();
+            yield return new WaitForSeconds (waitTime);
             SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+        }
     }
 
 

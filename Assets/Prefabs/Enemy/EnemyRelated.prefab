@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 533e1e23eb8aa2d489ee8c5026fd4110, type: 2}
+  - {fileID: 2100000, guid: 48cb659d61fd6da4990fb6e2102e67f7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -116,7 +116,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.31
   m_Center: {x: 0, y: 0.16, z: 0}
 --- !u!114 &2101810753
 MonoBehaviour:
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f998270d3312f5458f5fa13ab95974f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disolve: {fileID: 2100000, guid: 533e1e23eb8aa2d489ee8c5026fd4110, type: 2}
+  disolve: {fileID: 2100000, guid: 48cb659d61fd6da4990fb6e2102e67f7, type: 2}
   multiplier: 2.38
   maxIn: 1
   minOut: 0

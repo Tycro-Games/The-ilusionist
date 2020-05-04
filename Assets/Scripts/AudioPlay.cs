@@ -17,7 +17,8 @@ public class AudioPlay : MonoBehaviour
     }
     public void PlayASound ()
     {
-
+        if (Pause.isPause)
+            return;
         source.clip = walkSound[Random.Range (0, walkSound.Length)];
 
         source.Play ();

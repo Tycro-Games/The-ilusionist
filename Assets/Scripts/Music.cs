@@ -4,18 +4,27 @@ using UnityEngine;
 
 public class Music : MonoBehaviour
 {
-    private AudioPlay play;
+    private AudioSource play;
+
+    [SerializeField]
+    private AudioClip[] clips;
+
+    private int index = 0;
 
     void Start ()
     {
-        play = GetComponent<AudioPlay> ();
+        play = GetComponent<AudioSource> ();
 
         DontDestroyOnLoad (gameObject);
-    }
 
-    void Update ()
+        play.Play ();
+    }
+    private void Update ()
     {
-        if (!play.source.isPlaying)
-            play.PlayASound ();
+        if (!play.isPlaying)
+        {        
+            play.clip = clips[index];
+            index = (index + 1) % clips.Length;
+        }
     }
 }

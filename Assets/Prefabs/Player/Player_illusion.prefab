@@ -73,7 +73,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 533e1e23eb8aa2d489ee8c5026fd4110, type: 2}
+  - {fileID: 2100000, guid: e145ef0975dd2b04e97ebae920809230, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -91,8 +91,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -825953373
+  m_SortingLayer: 2
   m_SortingOrder: -1
   m_Sprite: {fileID: -982904232830982447, guid: 8d1cf320e4295b14bb9d67fbdc04b41a,
     type: 3}
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebdf84d551cbfdd499c716daa802b4b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disolve: {fileID: 2100000, guid: 533e1e23eb8aa2d489ee8c5026fd4110, type: 2}
+  disolve: {fileID: 2100000, guid: e145ef0975dd2b04e97ebae920809230, type: 2}
 --- !u!114 &7532129283499003368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,7 +344,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.11
+  m_Radius: 0.06
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1852036588704684703
 MonoBehaviour:

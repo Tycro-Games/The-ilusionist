@@ -132,7 +132,7 @@ public class SpotPlayer : MonoBehaviour
         Vector2 dir = (target - (Vector2)transform.position).normalized;
         return dir;
     }
-    void OnDrawGizmos ()
+    void OnDrawGizmosSelected ()
     {
         if (pathHolder.childCount == 0)
             return;

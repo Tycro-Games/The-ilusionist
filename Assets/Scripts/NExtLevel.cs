@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class NExtLevel : MonoBehaviour
 {
     SpriteRenderer sprite;
+
     [SerializeField]
     Sprite Change;
     public bool active = false;
@@ -14,23 +15,33 @@ public class NExtLevel : MonoBehaviour
     private bool changeAble = false;
 
     [SerializeField]
+    private float TimeToWait = 2f;
+
+    [SerializeField]
     private LayerMask Activate;
 
     [SerializeField]
     private AudioClip reversed;
     private AudioSource play;
 
+
     private void Start ()
     {
         play = GetComponent<AudioSource> ();
         sprite = GetComponent<SpriteRenderer> ();
+        if (!changeAble)
+        {
+            AudioClip Switc = play.clip;
+            play.clip = reversed;
+            reversed = play.clip;
+        }
     }
     private void Update ()
     {
         if (Physics.CheckSphere (transform.position, .3f, Activate))
         {
             if (active == false)
-                StartCoroutine (ChangeLook ());
+                ChangeLook ();
         }
         else if (changeAble && active)
         {
@@ -58,12 +69,11 @@ public class NExtLevel : MonoBehaviour
         Change = sp;
     }
 
-    IEnumerator ChangeLook ()
+    void ChangeLook ()
     {
         ChangeSprite ();
         active = true;
-        yield return new WaitForSeconds (2);
 
-        LevelCheck.NextLevel ();
+        StartCoroutine (LevelCheck.NextLevel (TimeToWait));
     }
 }
