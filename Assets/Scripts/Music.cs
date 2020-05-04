@@ -23,8 +23,10 @@ public class Music : MonoBehaviour
     {
         if (!play.isPlaying)
         {        
+
             play.clip = clips[index];
             index = (index + 1) % clips.Length;
+            play.Play ();
         }
     }
 }
