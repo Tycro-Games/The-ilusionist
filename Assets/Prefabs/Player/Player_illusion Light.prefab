@@ -92,8 +92,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -825953373
+  m_SortingLayer: 2
   m_SortingOrder: -1
   m_Sprite: {fileID: -982904232830982447, guid: 8d1cf320e4295b14bb9d67fbdc04b41a,
     type: 3}
@@ -334,7 +334,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.1
-  m_Speed: 5
+  m_Speed: 2.25
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 720
@@ -386,7 +386,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.11
+  m_Radius: 0.06
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1852036588704684703
 MonoBehaviour:

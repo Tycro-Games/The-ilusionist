@@ -14,6 +14,7 @@ public class DeadOnTouch : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
+            other.GetComponent<SpotPlayer> ().StartCoroutine (other.GetComponent<SpotPlayer> ().RotateToPoint (transform.position));
             Disolve ();
         }
     }
@@ -23,7 +24,7 @@ public class DeadOnTouch : MonoBehaviour
     }
     private void Update ()
     {
-        if (Input.GetMouseButtonDown (1) && onDestroy != null)
+        if (Input.GetMouseButtonDown (1) && onDestroy != null && !Pause.isPause)
         {
             Disolve ();
         }

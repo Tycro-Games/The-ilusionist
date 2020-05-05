@@ -28,7 +28,8 @@ public class Pause : MonoBehaviour
     }
     public void StartTime ()
     {
-        isPause = false;
+       
         Time.timeScale = 1;
+        isPause = false;
     }
 }

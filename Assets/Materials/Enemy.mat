@@ -38,7 +38,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _Fade: 0.405
+    - _Fade: 0.45
     - _Scale: 103.41
     m_Colors:
     - Color_7A0CCA10: {r: 147.65498, g: 197.34657, b: 271.17407, a: 0}

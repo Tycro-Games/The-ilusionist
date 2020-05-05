@@ -19,7 +19,7 @@ public class PlayerDies : MonoBehaviour
         }
     }
 
-    IEnumerator PlayerDie ()
+   public IEnumerator PlayerDie ()
     {
         play.Play ();
 

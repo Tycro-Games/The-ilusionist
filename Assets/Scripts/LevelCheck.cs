@@ -37,7 +37,14 @@ public class LevelCheck : MonoBehaviour
         {
             play.Play ();
             yield return new WaitForSeconds (waitTime);
-            SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+            int index = SceneManager.GetActiveScene ().buildIndex + 1;
+            if (SceneManager.sceneCountInBuildSettings > index)
+                SceneManager.LoadScene (index);
+            else
+            {
+                //endGame
+                Application.Quit ();
+            }
         }
     }
 

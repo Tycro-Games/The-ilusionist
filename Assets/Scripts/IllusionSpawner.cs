@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
@@ -29,12 +30,18 @@ public class IllusionSpawner : MonoBehaviour
     private Animator anim;
     private void Start ()
     {
+        currentTime = firerate;
         anim = GetComponentInChildren<Animator> ();
         teleport = GetComponentInChildren<TeleportSound> ();
     }
 
     public void Update ()
     {
+        if (Pause.isPause)
+        {
+            currentTime = .25f;
+            return;
+        }
         if (currentTime > 0)
             currentTime -= Time.deltaTime;
 
@@ -52,9 +59,14 @@ public class IllusionSpawner : MonoBehaviour
     }
     public void Spawn (InputAction.CallbackContext ctx)
     {
+        
         if (SceneManager.GetActiveScene ().buildIndex == 1)
             return;
-
+        if (EventSystem.current.IsPointerOverGameObject ())
+        {
+           
+            return;
+        }
         if (ctx.ReadValueAsButton () && currentInstance == null && currentTime <= 0)
         {
             currentTime = firerate;

@@ -7,7 +7,11 @@ public class sceneLoader : MonoBehaviour
 {
     public void LoadLevel ()
     {
-        SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex+1);
+        SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+    }
+    public void Retry ()
+    {
+        SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
     }
     public void Quit ()
     {
